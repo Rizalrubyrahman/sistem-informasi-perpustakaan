@@ -45,6 +45,9 @@ Route::group(['middleware' => ['auth','cekLevel:Admin,Guru']], function () {
     Route::post('/transaksi/proses-tambah','TransaksiController@prosesTambah');
     Route::put('/transaksi/{id}/ubah','TransaksiController@ubah');
     Route::delete('/transaksi/{id}/hapus','TransaksiController@hapus');
+
+    //laporan
+    Route::get('/laporan-pdf')
 });
 
 
