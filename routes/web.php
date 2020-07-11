@@ -47,7 +47,7 @@ Route::group(['middleware' => ['auth','cekLevel:Admin,Guru']], function () {
     Route::delete('/transaksi/{id}/hapus','TransaksiController@hapus');
 
     //laporan
-    Route::get('/laporan-pdf')
+    Route::get('/laporan-pdf','LaporanController@pdf');
 });
 
 
