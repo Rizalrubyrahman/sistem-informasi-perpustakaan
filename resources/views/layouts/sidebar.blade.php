@@ -52,6 +52,28 @@
                 <span class="nav-link-text">Transaksi</span>
               </a>
             </li>
+            <li class="nav-item">
+              <div class="dropdown ml-1">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="box-shadow: 3px 3px 3px white; background-color:white;">
+                  <i class="ni ni-single-copy-04"></i> 
+                   <span class="nav-link-text">Laporan</span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="box-shadow: 3px 3px 3px white;">
+                 <ul>
+                  <li class="nav-item">
+                    <a class="nav-link {{ Request::is('laporan-pdf*') ? 'active' : '' }}" href="/laporan-pdf">
+                      <span class="ml--3">PDF</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link {{ Request::is('laporan-exel*') ? 'active' : '' }}" href="/laporan-exel">
+                      <span class="ml--3">Exel</span>
+                    </a>
+                  </li>
+                 </ul>
+                </div>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
