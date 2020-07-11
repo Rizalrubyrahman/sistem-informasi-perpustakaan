@@ -48,9 +48,9 @@
                 {!!$errors->first('foto','<span class="invalid-feedback">:message</span>')!!}
             </div>
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" class="form-control {{$errors->has('email') ? 'is-invalid' : ''}}" placeholder="Masukan Email" value="{{old('email')}}">
-                {!!$errors->first('email','<span class="invalid-feedback">:message</span>')!!}
+                <label for="username">username</label>
+                <input type="text" name="username" id="username" class="form-control {{$errors->has('username') ? 'is-invalid' : ''}}" placeholder="Masukan username" value="{{old('username')}}">
+                {!!$errors->first('username','<span class="invalid-feedback">:message</span>')!!}
             </div>
             <div class="form-group">
                 <label for="password">Password</label>

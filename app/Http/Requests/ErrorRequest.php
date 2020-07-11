@@ -24,7 +24,7 @@ class ErrorRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required',
+            'username' => 'required|min:3|unique',
             'nama' => 'required|min:3',
             'jenis_kelamin' => 'required',
             'no_hp' => 'required|max:13',
@@ -36,7 +36,9 @@ class ErrorRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.required' => 'Email Tidak Boleh Kosong',
+            'username.required' => 'Username Tidak Boleh Kosong',
+            'username.unique' => 'Username Sudah Digunakan',
+            'username.min' => 'Username Minimal 3 Karakter',
             'password.required' => 'Password Tidak Boleh Kosong',
             'nama.required' => 'Nama Tidak Boleh Kosong',
             'nama.min' => 'Nama Minimal 3 Karakter',
