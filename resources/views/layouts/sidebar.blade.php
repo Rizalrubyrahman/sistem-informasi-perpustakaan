@@ -61,13 +61,13 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="box-shadow: 3px 3px 3px white;">
                  <ul>
                   <li class="nav-item">
-                    <a class="nav-link {{ Request::is('laporan-pdf*') ? 'active' : '' }}" href="/laporan-pdf">
-                      <span class="ml--3">PDF</span>
+                    <a class="nav-link {{ Request::is('laporan-transaksi*') ? 'active' : '' }}" href="/laporan-transaksi">
+                      <span class="ml--3">Cetak Laporan Transaksi</span>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link {{ Request::is('laporan-exel*') ? 'active' : '' }}" href="/laporan-exel">
-                      <span class="ml--3">Exel</span>
+                    <a class="nav-link {{ Request::is('laporan-buku*') ? 'active' : '' }}" href="/laporan-buku">
+                      <span class="ml--3">Cetak Laporan Buku</span>
                     </a>
                   </li>
                  </ul>
