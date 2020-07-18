@@ -24,9 +24,9 @@ class ErrorRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|min:3|unique',
+            'username' => 'required|min:3|unique:users',
             'nama' => 'required|min:3',
-            'jenis_kelamin' => 'required',
+            'email' => 'required',
             'no_hp' => 'required|max:13',
             'alamat' => 'required',
             'foto' => 'required',
@@ -42,7 +42,7 @@ class ErrorRequest extends FormRequest
             'password.required' => 'Password Tidak Boleh Kosong',
             'nama.required' => 'Nama Tidak Boleh Kosong',
             'nama.min' => 'Nama Minimal 3 Karakter',
-            'jenis_kelamin.required' => 'Jenis Kelamin Tidak Boleh Kosong',
+            'email.required' => 'Email Tidak Boleh Kosong',
             'no_hp.required' => 'No Hp Tidak Boleh Kosong',
             'no_hp.max' => 'No Hp Tidak Boleh Melebihi 13 Angka',
             'alamat.required' => 'Alamat Tidak Boleh Kosong',

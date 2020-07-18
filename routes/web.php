@@ -17,7 +17,7 @@ Route::group(['middleware' => ['auth','cekLevel:Admin,Guru']], function () {
     Route::get('/pegawai/tambah','PegawaiController@tambah');
     Route::post('/pegawai/proses-tambah','PegawaiController@prosesTambah');
     Route::get('/pegawai/{id}/profile','PegawaiController@profile');
-    Route::delete('/pegawai/{id}/hapus','PegawaiController@hapus');
+    Route::get('/pegawai/{id}/hapus','PegawaiController@hapus');
     Route::put('/pegawai/{id}/profile/ubah','PegawaiController@ubah');
 
     //dashboard
@@ -29,7 +29,7 @@ Route::group(['middleware' => ['auth','cekLevel:Admin,Guru']], function () {
     Route::post('/buku/proses-tambah','BukuController@prosesTambah');
     Route::get('/buku/{id}/ubah','BukuController@ubah');
     Route::put('buku/{id}/proses-ubah','BukuController@prosesUbah');
-    Route::delete('/buku/{id}/hapus','BukuController@hapus');
+    Route::get('/buku/{id}/hapus','BukuController@hapus');
 
     //amggota
     Route::get('/anggota','AnggotaController@index');
@@ -37,14 +37,14 @@ Route::group(['middleware' => ['auth','cekLevel:Admin,Guru']], function () {
     Route::post('anggota/proses-tambah','AnggotaController@prosesTambah');
     Route::get('/anggota/{id}/ubah','AnggotaController@ubah');
     Route::put('/anggota/{id}/proses-ubah','AnggotaController@prosesUbah');
-    Route::delete('/anggota/{id}/hapus','AnggotaController@hapus');
+    Route::get('/anggota/{id}/hapus','AnggotaController@hapus');
 
     //transaksi
     Route::get('/transaksi','TransaksiController@index');
     Route::get('/transaksi/tambah','TransaksiController@tambah');
     Route::post('/transaksi/proses-tambah','TransaksiController@prosesTambah');
     Route::put('/transaksi/{id}/ubah','TransaksiController@ubah');
-    Route::delete('/transaksi/{id}/hapus','TransaksiController@hapus');
+    Route::get('/transaksi/{id}/hapus','TransaksiController@hapus');
 
     //laporan
     Route::get('/laporan-transaksi','LaporanController@transaksi');

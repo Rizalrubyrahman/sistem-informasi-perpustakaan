@@ -41,11 +41,7 @@
             <td>{{$pegawai->user->level}}</td>
             @if (auth()->user()->level == "Admin")
               <td>
-                <form action="/pegawai/{{$pegawai->id}}/hapus" method="post">
-                  {{ csrf_field() }}
-                  <input type="hidden" name="_method" value="delete">
-                  <button type="submit" class="btn btn-sm btn-danger" style="border:none;">Hapus</button>
-                </form>
+                  <a href="#" class="btn btn-sm btn-danger delete" pegawai-id="{{ $pegawai->id }}" style="border:none;">Hapus</a>
               </td>  
             @endif
         </tr>
@@ -54,4 +50,23 @@
     </table>
   </div>
 </div>
+@endsection
+@section('javascript')
+    <script>
+      $('.delete').click(function(){
+        var pegawai_id = $(this).attr('pegawai-id');
+        swal({
+          title: "Apa kamu yakin?",
+          text: "Data akan dihapus",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            window.location = "/pegawai/" + pegawai_id + "/hapus";
+          }
+        });
+      });
+    </script>
 @endsection

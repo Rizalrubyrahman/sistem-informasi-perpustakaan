@@ -42,11 +42,7 @@
             @if (auth()->user()->level == "Admin")
               <td>
                 @if($transaksi->status == "Kembali")
-                    <form action="/transaksi/{{$transaksi->id}}/hapus" method="post">
-                        {{ csrf_field() }}
-                        <input type="hidden" name="_method" value="delete">
-                        <button type="submit" class="btn btn-sm btn-danger" style="border:none;">Hapus</button>
-                    </form>
+                  <a href="#" class="btn btn-sm btn-danger delete" transaksi-id="{{ $transaksi->id }}" style="border:none;">Hapus</a>
                 @else
                 <div class="btn-group dropdown">
                     <button type="button" class="btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,11 +54,7 @@
                             <input type="hidden" name="_method" value="put">
                             <button type="submit" class="dropdown-item" style="border:none;">Sudah Kembali</button>
                         </form>
-                        <form action="/transaksi/{{$transaksi->id}}/hapus" method="post">
-                            {{ csrf_field() }}
-                            <input type="hidden" name="_method" value="delete">
-                            <button type="submit" class="dropdown-item" style="border:none;">Hapus</button>
-                        </form>
+                          <a href="#" class="dropdown-item delete" transaksi-id="{{ $transaksi->id }}" style="border:none;">Hapus</a>
                     </div>
                   </div>
                 @endif
@@ -74,4 +66,23 @@
     </table>
   </div>
 </div>
+@endsection
+@section('javascript')
+    <script>
+      $('.delete').click(function(){
+        var transaksi_id = $(this).attr('transaksi-id');
+        swal({
+          title: "Apa kamu yakin?",
+          text: "Data akan dihapus",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            window.location = "/transaksi/" + transaksi_id + "/hapus";
+          }
+        });
+      });
+    </script>
 @endsection

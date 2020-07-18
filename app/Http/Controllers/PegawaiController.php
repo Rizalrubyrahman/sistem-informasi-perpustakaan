@@ -14,7 +14,7 @@ class PegawaiController extends Controller
 {
     public function index()
     {
-        $data_pegawai = Pegawai::all()->sortBy('id_pegawai');
+        $data_pegawai = Pegawai::all()->sortBy('kode_pegawai');
         return view('pegawai.index',compact('data_pegawai'));
     }
 
@@ -47,6 +47,7 @@ class PegawaiController extends Controller
             $user = new User;
             $user->name = $request->nama;
             $user->email = $request->email;
+            $user->username = $request->username;
             $user->password = bcrypt($request->password);
             $user->remember_token = str_random(50);
             $user->level = $request->level;

@@ -34,11 +34,7 @@
             @if (auth()->user()->level == "Admin")
               <td>
                 <a href="/anggota/{{$anggota->id}}/ubah" class="btn btn-sm btn-warning">Ubah</a>
-              <form action="/anggota/{{$anggota->id}}/hapus" method="post" class="d-inline">
-                {{ csrf_field() }}
-                <input type="hidden" name="_method" value="delete">
-                <button type="submit" class="btn btn-sm btn-danger" style="border:none;">Hapus</button>
-              </form>
+                <a href="#" class="btn btn-sm btn-danger delete" anggota-id="{{ $anggota->id }}" style="border:none;">Hapus</a>
             </td>  
             @endif
         </tr>
@@ -47,4 +43,23 @@
     </table>
   </div>
 </div>
+@endsection
+@section('javascript')
+    <script>
+      $('.delete').click(function(){
+        var anggota_id = $(this).attr('anggota-id');
+        swal({
+          title: "Apa kamu yakin?",
+          text: "Data akan dihapus",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            window.location = "/anggota/" + anggota_id + "/hapus";
+          }
+        });
+      });
+    </script>
 @endsection
