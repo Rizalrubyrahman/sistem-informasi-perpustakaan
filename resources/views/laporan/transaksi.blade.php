@@ -16,9 +16,9 @@
                       Export PDF
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
+                      <a class="dropdown-item" href="/laporan/transaksi/pdf">Semua Transaksi</a>
+                      <a class="dropdown-item" href="/laporan/transaksi/pdf?status=Pinjam">Tabel Pinjam</a>
+                      <a class="dropdown-item" href="/laporan/transaksi/pdf?status=Kembali">Tabel Kembali</a>
                     </div>
                 </div>
             </div>
