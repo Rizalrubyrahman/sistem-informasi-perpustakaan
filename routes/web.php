@@ -51,6 +51,10 @@ Route::group(['middleware' => ['auth','cekLevel:Admin,Guru']], function () {
     Route::get('/laporan-transaksi','LaporanController@transaksi');
     Route::get('/laporan/transaksi/pdf','LaporanController@transaksiPdf');
 
+    //buku
+    Route::get('/laporan-buku','LaporanController@buku');
+    Route::get('/laporan/buku/pdf','LaporanController@bukuPdf');
+
 });
 
 

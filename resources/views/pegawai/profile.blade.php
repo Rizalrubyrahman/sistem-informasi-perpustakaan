@@ -24,23 +24,10 @@
           <div class="card-body pt-0">
             <div class="row">
               <div class="col">
-                <div class="card-profile-stats d-flex justify-content-center">
-                  <div>
-                    <span class="heading">1</span>
-                    <span class="description">Mapel</span>
-                  </div>
-                  <div>
-                    <span class="heading">10</span>
-                    <span class="description">Photos</span>
-                  </div>
-                  <div>
-                    <span class="heading">89</span>
-                    <span class="description">Comments</span>
-                  </div>
-                </div>
+                
               </div>
             </div>
-            <div class="text-center">
+            <div class="text-center mt-4">
               <h5 class="h3">
                 {{$pegawai->nama}}<span class="font-weight-light"></span>
               </h5>
