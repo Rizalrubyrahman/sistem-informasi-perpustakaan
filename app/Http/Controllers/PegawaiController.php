@@ -83,7 +83,11 @@ class PegawaiController extends Controller
     {
         $pegawai = Pegawai::find($id);
         
-        $pegawai->user()->update($request->all());
+        $pegawai->user()->update([
+            'name' => $request->nama,
+            'level' => $request->level,
+        ]);
+        $pegawai->update($request->all());
         if($request->hasFile('foto'))
         {
             $tempat_file = public_path('/images');
