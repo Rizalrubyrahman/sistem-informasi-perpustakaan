@@ -49,9 +49,12 @@
             <div class="col">
                 
                      @yield('content') 
-                
+                 <div class="footer">
+          <p class="text-center" style="font-size:12px;">copyright &copy; 2020 | <i class="Heart fill"></i><a href="https://facebook.com/rizalruby.rahman.1">Rizal Ruby Rahman</a>.</p>
+        </div>
             </div>
         </div>
+       
     </div>
     @include('sweetalert::alert')
 

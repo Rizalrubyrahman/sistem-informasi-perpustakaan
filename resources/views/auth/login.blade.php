@@ -30,32 +30,32 @@
  <link rel="stylesheet" href="{{asset('assets/css/argon.css?v=1.2.0')}}">
 </head>
 
-<body class="bg-default">
+<body background="{{ asset('assets/img/bg.jpg') }}">
  
   <!-- Main content -->
   <div class="main-content">
     <!-- Header -->
-    <div class="header bg-gradient-primary  py-lg-8 pt-lg-9">
+    <div class="header  py-lg-8 pt-lg-9">
       <div class="container">
        
       </div>
-      <div class="separator separator-bottom separator-skew zindex-100">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-        </svg>
+      <div class="separator separator-skew zindex-100">
+        
       </div>
     </div>
     <!-- Page content -->
     <div class="container mt--8 pb-5">
       <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7">
-          <div class="card bg-secondary border-0 mb-0">
-            <div class="card-header bg-transparent pb-5">
-              
+          <div style="margin-top: -130px;" class="card bg-secondary border-0 mb-0">
+            <div style="background-color: white;" class="card-header text-center pb-5">
+              <h2>Login Perpus SMKN 1 Cilamaya Wetan</h2>
+              <img style="margin-top: -10px;" src="{{ asset('assets/img/smk.jpg') }}">
             </div>
-            <div class="card-body px-lg-5 py-lg-5">
+            <div style="background-color: white; margin-top:-87px;" class="card-body">
               <div class="text-center text-muted mb-4">
-                <h2>Login</h2>
+                
+
               </div>
               <form role="form" action="/login" method="POST">
                 {{ csrf_field() }}
@@ -64,7 +64,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-single-02"></i></span>
                     </div>
-                    <input class="form-control" name="username" placeholder="Username" type="text">
+                    <input class="form-control shadow" name="username" placeholder="Username" type="text">
                   </div>
                 </div>
                 <div class="form-group">
@@ -72,7 +72,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Password" name="password" type="password">
+                    <input class="form-control shadow" placeholder="Password" name="password" type="password">
                   </div>
                 </div>
                 
@@ -80,6 +80,7 @@
                   <button type="submit" class="btn btn-primary my-4">Login</button>
                 </div>
               </form>
+                <p class="text-center" style="font-size:12px;">copyright &copy; 2020 | <i class="Heart fill"></i><a href="https://facebook.com/rizalruby.rahman.1">Rizal Ruby Rahman</a>.</p>
             </div>
           </div>
          
