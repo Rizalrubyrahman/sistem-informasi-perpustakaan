@@ -13,10 +13,6 @@
             <div class="col-md-2">
                 <a href="/laporan/buku/pdf" class="btn btn-danger">Export Pdf</a>
             </div>
-            <div class="col-md-2">
-                <a href="" class="btn btn-success">Export Exel</a>
-            </div>
-            </div>
         </div>
     </div>
 </div>
