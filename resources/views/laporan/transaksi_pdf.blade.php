@@ -104,7 +104,7 @@
 <body>
 	<div style="width: 950px;">	
 		<img src="assets/img/smk.jpg">
-        <h2 style="margin-left:170px; margin-top: -60px;">Perpustakaan SMKN 1 CIlamaya Wetan</h2>
+        <h2 style="margin-left:170px; margin-top: -90px;">Perpustakaan SMKN 1 CIlamaya Wetan</h2>
     </div>
     <div style="margin-top:100px;">
         <hr style="margin-top: -100px;">
