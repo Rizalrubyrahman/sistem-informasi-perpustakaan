@@ -16,7 +16,8 @@
                     <div class="col-md-10">
                         <label for="anggota_id">Nama Anggota</label>
                         <input type="text" id="anggota_nama" class="form-control" readonly>
-                        <input type="hidden" name="anggota_id" id="anggota_id" class="form-control" value="{{old('anggota_id')}}">  
+                        <input type="hidden" name="anggota_id" id="anggota_id" class="form-control{{ $errors->has('anggota_id') ? ' is-invalid' : '' }}" value="{{old('anggota_id')}}">
+                        {!!$errors->first('tanggal_pinjam','<span class="invalid-feedback">:message</span>')!!}  
                     </div>
                     <div class="col-md-2">    
                         <button type="button" class="btn btn-primary" style="margin-top:33px;" data-toggle="modal" data-target="#modal1">
@@ -30,7 +31,8 @@
                     <div class="col-md-10">
                         <label>Judul Buku</label>
                         <input type="text" id="buku_judul" class="form-control" readonly>
-                        <input type="hidden" name="buku_id" id="buku_id" class="form-control" value="{{old('buku_id')}}">
+                        <input type="hidden" name="buku_id" id="buku_id" class="form-control{{ $errors->has('buku_id') ? ' is-invalid' : '' }}" value="{{old('buku_id')}}">
+                        {!!$errors->first('buku_id','<span class="invalid-feedback">:message</span>')!!}
                     </div>
                     <div class="col-md-2">
                         <button type="button" class="btn btn-primary" style="margin-top:33px;" data-toggle="modal" data-target="#modal2">
@@ -41,13 +43,12 @@
             </div>
             <div class="form-group">
                 <label for="tanggal_pinjam">Tanggal Pinjam</label>
-                <input type="date" name="tanggal_pinjam" id="tanggal_pinjam" class="form-control {{$errors->has('tanggal_pinjam') ? 'is-invalid' : ''}}" value="{{date('d-m-yy',strtotime(Carbon\Carbon::toDay()->toDateString()))}} ">
+                <input type="date" name="tanggal_pinjam" id="tanggal_pinjam" class="form-control {{$errors->has('tanggal_pinjam') ? 'is-invalid' : ''}}" value="{{Carbon\Carbon::toDay()->toDateString()}} ">
                 {!!$errors->first('tanggal_pinjam','<span class="invalid-feedback">:message</span>')!!}
             </div>
             <div class="form-group">
-                <label for="tanggal_kembali">Tanggal Kembali</label>
-                <input type="date" name="tanggal_kembali" id="tanggal_kembali" class="form-control {{$errors->has('tanggal_kembali') ? 'is-invalid' : ''}}" value="{{date('d-m-yy',strtotime(Carbon\Carbon::toDay()->addDays(7)->toDateString()))}}">
-                {!!$errors->first('tanggal_kembali','<span class="invalid-feedback">:message</span>')!!}
+                <input type="hidden" name="tanggal_kembali" id="tanggal_kembali" class="form-control" value="{{Carbon\Carbon::toDay()->addDays(7)->toDateString()}}">
+
             </div>
             <button type="submit" class="btn btn-primary"><i class="ni ni-send"></i> Simpan</button>
         </form>

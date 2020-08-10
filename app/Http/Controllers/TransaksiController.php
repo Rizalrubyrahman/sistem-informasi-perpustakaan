@@ -6,6 +6,7 @@ use App\Anggota;
 use App\Transaksi;
 use Illuminate\Http\Request;
 use App\Http\Requests\TransaksiRequest;
+use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class TransaksiController extends Controller
@@ -37,7 +38,9 @@ class TransaksiController extends Controller
                 $kode = "TR".''.($lastId->id + 1);
             }
         }
-        return view('transaksi.tambah',compact('kode','data_buku','data_anggota'));
+        $carbon = Carbon::now();
+        
+        return view('transaksi.tambah',compact('kode','data_buku','data_anggota','carbon'));
     }
     public function prosesTambah(TransaksiRequest $request)
     {

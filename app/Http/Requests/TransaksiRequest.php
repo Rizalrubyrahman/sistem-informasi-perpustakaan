@@ -26,6 +26,8 @@ class TransaksiRequest extends FormRequest
         return [
             'tanggal_pinjam' => 'required',
             'tanggal_kembali' => 'required',
+            'buku_id' => 'required',
+            'anggota_id' => 'required',
         ];
     }
     public function messages ()
@@ -33,6 +35,8 @@ class TransaksiRequest extends FormRequest
         return [
             'tanggal_pinjam.required' => 'Tanggal Pinjam Tidak Boleh Kosong',
             'tanggal_kembali.required' => 'Tanggal Kembali Tidak Boleh Kosong',
+            'buku_id.required' => 'Judul Buku Tidak Boleh Kosong',
+            'anggota_id.required' => 'Nama Anggota Tidak Boleh Kosong',
         ];
     }
 }
