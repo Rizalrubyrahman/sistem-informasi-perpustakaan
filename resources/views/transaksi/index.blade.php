@@ -30,8 +30,8 @@
             <td>{{$transaksi->kode_transaksi}}</td>
             <td>{{$transaksi->anggota->nama}}</td>
             <td>{{$transaksi->buku->judul}}</td>
-            <td>{{date('d-m-yy',strtotime($transaksi->tanggal_pinjam))}}</td>
-            <td>{{date('d-m-yy',strtotime($transaksi->tanggal_kembali))}}</td>
+            <td>{{date('d-m-Y',strtotime($transaksi->tanggal_pinjam))}}</td>
+            <td>{{date('d-m-Y',strtotime($transaksi->tanggal_kembali))}}</td>
             <td>
                 @if($transaksi->status == "Pinjam")
                     <span class="badge" style="background-color: #ffc107; color: #212529;">{{$transaksi->status}}</span>

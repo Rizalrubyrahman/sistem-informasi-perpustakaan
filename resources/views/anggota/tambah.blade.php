@@ -16,9 +16,9 @@
                     <div class="form-group">
                         <label for="kelas">Kelas</label>
                         <select name="kelas" id="kelas" class="form-control {{$errors->has('kelas') ? 'is-invalid' : ''}}">
-                            <option value="X">X</option>
-                            <option value="XI">XI</option>
-                            <option value="XII">XII</option>
+                            <option value="X" @if(old('kelas') == 'X') selected @endif>X</option>
+                            <option value="XI" @if(old('kelas') == 'XI') selected @endif>XI</option>
+                            <option value="XII" @if(old('kelas') == 'XII') selected @endif>XII</option>
                         </select>
                         {!!$errors->first('kelas','<span class="invalid-feedback">:message</span>') !!}
                     </div>
@@ -27,10 +27,10 @@
                     <div class="form-group">
                         <label for="jurusan">jurusan</label>
                         <select name="jurusan" id="jurusan" class="form-control {{$errors->has('jurusan') ? 'is-invalid' : ''}}">
-                            <option value="TKJ">TKJ</option>
-                            <option value="TKR">TKR</option>
-                            <option value="AP">AP</option>
-                            <option value="TPHP">TPHP</option>
+                            <option value="TKJ" @if(old('jurusan') == 'TKJ') selected @endif>TKJ</option>
+                            <option value="TKR" @if(old('jurusan') == 'TKR') selected @endif>TKR</option>
+                            <option value="AP" @if(old('jurusan') == 'AP') selected @endif>AP</option>
+                            <option value="TPHP" @if(old('jurusan') == 'TPHP') selected @endif>TPHP</option>
                         </select>
                         {!!$errors->first('jurusan','<span class="invalid-feedback">:message</span>') !!}
                     </div>
@@ -39,10 +39,10 @@
             <div class="form-group">
                 <label>Jenis Kelamin</label>
             <div class="form-check mt-3">
-                <input class="form-check-input" type="radio" name="jenis_kelamin" id="exampleRadios1" value="Laki-Laki">
+                <input class="form-check-input" type="radio" name="jenis_kelamin" id="exampleRadios1" value="Laki-Laki" @if(old('jenis_kelamin') == 'Laki-Laki') checked @endif>
                 <label class="form-check-label" for="exampleRadios1">Laki-Laki</label>
 
-                <input class="form-check-input ml-2" type="radio" name="jenis_kelamin" id="exampleRadios1" value="Perempuan">
+                <input class="form-check-input ml-2" type="radio" name="jenis_kelamin" id="exampleRadios1" value="Perempuan" @if(old('jenis_kelamin') == 'Perempuan') checked @endif>
                 <label class="form-check-label ml-4" for="exampleRadios1">Perempuan</label>
             </div>
             </div>

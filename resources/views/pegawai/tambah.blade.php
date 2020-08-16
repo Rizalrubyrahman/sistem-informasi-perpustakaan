@@ -21,10 +21,10 @@
                     <div class="form-group">
                         <label>Jenis Kelamin</label>
                     <div class="form-check mt-3">
-                        <input class="form-check-input" type="radio" name="jenis_kelamin" id="exampleRadios1" value="Laki-Laki">
+                        <input class="form-check-input" type="radio" name="jenis_kelamin" id="exampleRadios1" value="Laki-Laki" @if(old('jenis_kelamin') == 'Laki-Laki') checked @endif>
                         <label class="form-check-label" for="exampleRadios1">Laki-Laki</label>
 
-                        <input class="form-check-input ml-2" type="radio" name="jenis_kelamin" id="exampleRadios1" value="Perempuan">
+                        <input class="form-check-input ml-2" type="radio" name="jenis_kelamin" id="exampleRadios1" value="Perempuan" @if(old('jenis_kelamin') == 'Perempuan') checked @endif>
                         <label class="form-check-label ml-4" for="exampleRadios1">Perempuan</label>
                     </div>
                     </div>
@@ -65,8 +65,8 @@
             <div class="form-group">
                 <label>Level</label>
                 <select name="level" class="form-control">
-                    <option value="Admin">Admin</option>
-                    <option value="Guru">Guru</option>
+                    <option value="Admin"  @if(old('level') == 'Admin') selected @endif>Admin</option>
+                    <option value="Guru"  @if(old('level') == 'Guru') selected @endif>Guru</option>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary"><i class="ni ni-send"></i> Simpan</button>

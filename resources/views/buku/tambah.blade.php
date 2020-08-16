@@ -39,7 +39,7 @@
                     for($i = 1990;$i <= 2020; $i++)
                     {
                 ?>
-                    <option value="{{$i}}">{{$i}}</option>
+                    <option value="{{$i}}" @if(old('tahun') == $i) selected @endif>{{$i}}</option>
                 <?php 
                     }
                 ?>
