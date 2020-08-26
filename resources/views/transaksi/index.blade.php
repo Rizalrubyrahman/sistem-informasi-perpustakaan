@@ -18,6 +18,7 @@
           <th scope="col">Judul Buku</th>
           <th scope="col">Tanggal Pinjam</th>
           <th scope="col">Tanggal Kembali</th>
+          <th class="text-center">Denda</th>
           <th scope="col">Status</th>
           @if (auth()->user()->level == "Admin")
             <th scope="col">Aksi</th>    
@@ -32,6 +33,21 @@
             <td>{{$transaksi->buku->judul}}</td>
             <td>{{date('d-m-Y',strtotime($transaksi->tanggal_pinjam))}}</td>
             <td>{{date('d-m-Y',strtotime($transaksi->tanggal_kembali))}}</td>
+            @php
+                $datetime = strtotime($transaksi->tanggal_kembali);
+                $datenow = strtotime(date("Y-m-d"));
+                $durasi = ($datetime - $datenow) / 86400;
+            @endphp
+            <td class="text-center">
+              @if ($durasi < 0)
+                  @php
+                      $denda = abs($durasi) * 1000;
+                  @endphp
+                  Rp.{{ $denda }}
+              @else
+                Rp.0
+              @endif
+            </td>
             <td>
                 @if($transaksi->status == "Pinjam")
                     <span class="badge" style="background-color: #ffc107; color: #212529;">{{$transaksi->status}}</span>
@@ -44,7 +60,7 @@
                 @if($transaksi->status == "Kembali")
                   <a href="#" class="btn btn-sm btn-danger delete" transaksi-id="{{ $transaksi->id }}" style="border:none;">Hapus</a>
                 @else
-                <div class="btn-group dropdown">
+                  <div class="btn-group dropdown">
                     <button type="button" class="btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Aksi
                     </button>
