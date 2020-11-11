@@ -94,92 +94,31 @@
         </div>
       </div>
     </div>
+    
   <div class="container">
     <div class="card"style="width: 97%; margin:auto;">
       <div class="card-header">
-        <h3>Buku Yang sedang Di Pinjam</h3>
+        <h3>Grafik Peminjaman Buku Per Bulan</h3>
       </div>
-    <div class="card-body" >
-      <div class="table-responsive shadow mt-4">
-    <table class="table align-items-center table-flush" id="datatable">
-      <thead class="thead-light">
-        <tr>
-          <th scope="col">Kode Transaksi</th>
-          <th scope="col">Nama Anggota</th>
-          <th scope="col">Judul Buku</th>
-          <th scope="col">Tanggal Pinjam</th>
-          <th scope="col">Tanggal Kembali</th>
-          <th scope="col">Status</th>
-          @if (auth()->user()->level == "Admin")
-            <th scope="col">Aksi</th>    
-          @endif
-        </tr>
-      </thead>
-      
-      @foreach($data_transaksi as $transaksi)
-      @if ($transaksi->status == "Pinjam")
-      <tbody class="list">
-        <tr>
-            <td>{{$transaksi->kode_transaksi}}</td>
-            <td>{{$transaksi->anggota->nama}}</td>
-            <td>{{$transaksi->buku->judul}}</td>
-            <td>{{date('d-m-yy',strtotime($transaksi->tanggal_pinjam))}}</td>
-            <td>{{date('d-m-yy',strtotime($transaksi->tanggal_kembali))}}</td>
-            <td>
-                @if($transaksi->status == "Pinjam")
-                    <span class="badge" style="background-color: #ffc107; color: #212529;">{{$transaksi->status}}</span>
-                @else
-                    <span class="badge" style="background-color: #28a745; color:#fff">{{$transaksi->status}}</span>
-                @endif
-            </td>
-            @if (auth()->user()->level == "Admin")
-              <td>
-                @if($transaksi->status == "Kembali")
-                  <a href="#" class="btn btn-sm btn-danger delete" transaksi-id="{{ $transaksi->id }}" style="border:none;">Hapus</a>
-                @else
-                <div class="btn-group dropdown">
-                    <button type="button" class="btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Aksi
-                    </button>
-                    <div class="dropdown-menu">
-                        <form action="/transaksi/{{$transaksi->id}}/ubah" method="post">
-                            {{ csrf_field() }}
-                            <input type="hidden" name="_method" value="put">
-                            <button type="submit" class="dropdown-item" style="border:none;">Sudah Kembali</button>
-                        </form>
-                        <a href="#" class="dropdown-item delete" transaksi-id="{{ $transaksi->id }}" style="border:none;">Hapus</a>
-                    </div>
-                  </div>
-                @endif
-              </td>  
-            @endif
-        </tr>
-      </tbody>
-      @endif
-      @endforeach
-      
-    </table>
-  </div>
-    </div>
+      <div class="card-body" >
+        <div class="row">
+          <div class="col-md-12">
+            <div id="map"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 @endsection
 @section('javascript')
     <script>
-      $('.delete').click(function(){
-        var transaksi_id = $(this).attr('transaksi-id');
-        swal({
-          title: "Apa kamu yakin?",
-          text: "Data akan dihapus",
-          icon: "warning",
-          buttons: true,
-          dangerMode: true,
-        })
-        .then((willDelete) => {
-          if (willDelete) {
-            window.location = "/transaksi/" + transaksi_id + "/hapus";
-          }
+      var map = L.map('map', {
+            center: [-6.991576, 109.122923],
+            zoom: 13
         });
-      });
+
+        L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=Ts9g8McLuNVEfjGFTHeG', {
+            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>'
+        }).addTo(map);
     </script>
 @endsection

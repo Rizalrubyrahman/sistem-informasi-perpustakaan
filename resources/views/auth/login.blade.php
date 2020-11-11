@@ -18,16 +18,16 @@
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
   <title>Login</title>
- <!-- Favicon -->
- <link rel="icon" href="{{asset('assets/img/brand/favicon.png" type="image/png')}}">
- <!-- Fonts -->
- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
- <!-- Icons -->
- <link rel="stylesheet" href="{{asset('assets/vendor/nucleo/css/nucleo.css')}}">
- <link rel="stylesheet" href="{{asset('assets/vendor/fontawesome-free/css/all.min.css')}}">
- <!-- Page plugins -->
- <!-- Argon CSS -->
- <link rel="stylesheet" href="{{asset('assets/css/argon.css?v=1.2.0')}}">
+  <!-- Favicon -->
+  <link rel="icon" href="{{asset('assets/img/brand/favicon.png" type="image/png')}}">
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <!-- Icons -->
+  <link rel="stylesheet" href="{{asset('assets/vendor/nucleo/css/nucleo.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/vendor/fontawesome-free/css/all.min.css')}}">
+  <!-- Page plugins -->
+  <!-- Argon CSS -->
+  <link rel="stylesheet" href="{{asset('assets/css/argon.css?v=1.2.0')}}">
 </head>
 
 <body background="{{ asset('assets/img/bg.jpg') }}">
@@ -55,6 +55,11 @@
             <div style="background-color: white; margin-top:-87px;" class="card-body">
               <div class="text-center text-muted mb-4">
                 
+                @if ($message = session()->get('error'))
+                  <div class="text-danger">
+                    {{ $message }}
+                  </div>
+                @endif
 
               </div>
               <form role="form" action="/login" method="POST">
@@ -64,16 +69,18 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-single-02"></i></span>
                     </div>
-                    <input class="form-control shadow" name="username" placeholder="Username" type="text">
+                    <input class="form-control shadow {{$errors->has('username') ? 'is-invalid' : '' }}" name="username" placeholder="Username" type="text">
                   </div>
+                  {!!$errors->first('username','<span class=" text-danger mt-2">:message</span>' )!!}
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control shadow" placeholder="Password" name="password" type="password">
+                    <input class="form-control shadow {{$errors->has('password') ? 'is-invalid' : '' }}" placeholder="Password" name="password" type="password">
                   </div>
+                  {!!$errors->first('password','<span class=" text-danger mt-2">:message</span>' )!!}
                 </div>
                 
                 <div class="text-center">

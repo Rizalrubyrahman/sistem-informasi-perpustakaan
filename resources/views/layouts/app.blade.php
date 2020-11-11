@@ -21,6 +21,10 @@
   <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
   {{-- dataTables --}}
   <link rel="stylesheet" href="{{asset('assets/css/jquery.dataTables.css')}}"> 
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+  crossorigin=""/>
+</head>
   
   
 </head>
@@ -68,6 +72,9 @@
     <!-- Optional JS -->
     <script src="{{asset('assets/vendor/chart.js/dist/Chart.min.js')}}"></script>
     <script src="{{asset('assets/vendor/chart.js/dist/Chart.extension.js')}}"></script>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
     
     <!-- Argon JS -->
     <script src="{{asset('assets/js/argon.js?v=1.2.0')}}"></script>
@@ -75,6 +82,9 @@
     {{-- dataTables --}}
     <script src="{{asset('assets/js/jquery.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery.dataTables.js')}}"></script>
+    <script src="{{ asset('js/chart-bundle.js') }}"></script>
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    @yield('chart')
     @yield('javascript')
     <script>
       $(document).ready( function () {

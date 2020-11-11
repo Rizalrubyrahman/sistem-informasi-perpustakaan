@@ -5,6 +5,7 @@ use App\Pegawai;
 use App\Buku;
 use App\Anggota;
 use App\Transaksi;
+use DB;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller

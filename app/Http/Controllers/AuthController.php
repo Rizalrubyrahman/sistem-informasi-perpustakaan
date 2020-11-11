@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
@@ -11,11 +12,12 @@ class AuthController extends Controller
     {
         return view('auth.login');
     }
-    public function cekLogin(Request $request)
+    public function cekLogin(LoginRequest $request)
     {
         if(Auth::attempt($request->only('username','password'))){
             return redirect('/');
         }else{
+            session()->flash('error', 'Username/Password yang anda masukan salah');
             return redirect('/login');
         }
     }
