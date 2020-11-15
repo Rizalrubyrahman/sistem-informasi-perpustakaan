@@ -29,7 +29,6 @@ class ErrorRequest extends FormRequest
             'email' => 'required',
             'no_hp' => 'required|max:13',
             'alamat' => 'required',
-            'foto' => 'required',
             'password' => 'required',
         ];
     }
@@ -46,7 +45,6 @@ class ErrorRequest extends FormRequest
             'no_hp.required' => 'No Hp Tidak Boleh Kosong',
             'no_hp.max' => 'No Hp Tidak Boleh Melebihi 13 Angka',
             'alamat.required' => 'Alamat Tidak Boleh Kosong',
-            'foto.required' => 'Foto Profile Tidak Boleh Kosong',
             
         ];
     }

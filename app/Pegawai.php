@@ -19,7 +19,7 @@ class Pegawai extends Model
     public function getFoto()
     {
         if(!$this->foto){
-            if($this->jenis_kelamin == 'Pria'){
+            if($this->jenis_kelamin == 'Laki-Laki'){
                 return asset('images/default-laki2.jpg');
             }else{
                 return asset('images/default-perempuan.jpg');

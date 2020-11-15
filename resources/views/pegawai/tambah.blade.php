@@ -44,8 +44,8 @@
             </div>
             <div class="form-group">
                 <label for="foto">Foto Profile</label>
-                <input type="file" name="foto" id="foto" class="form-control {{$errors->has('foto') ? 'is-invalid' : ''}}">
-                {!!$errors->first('foto','<span class="invalid-feedback">:message</span>')!!}
+                <input type="file" name="foto" id="foto" class="form-control">
+                
             </div>
             <div class="form-group">
                 <label for="username">username</label>

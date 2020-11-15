@@ -8,9 +8,14 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class AnggotaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data_anggota = Anggota::all();
+        if($request->has('cari')){
+            $data_anggota = anggota::where('nama','like',"%".$request->cari."%")->get();
+        }else{
+            $data_anggota = Anggota::all();
+        }
+        
         return view('anggota.index',compact('data_anggota'));
     }
     public function tambah()

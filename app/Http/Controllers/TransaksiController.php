@@ -11,9 +11,14 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class TransaksiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-       $data_transaksi = Transaksi::all();
+        if($request->has('cari')){
+            $data_transaksi = Transaksi::where('kode_transaksi','like',"%".$request->cari."%")->get();
+        }else{
+            $data_transaksi = Transaksi::all();
+        }
+       
        return view('transaksi.index',compact('data_transaksi'));
     }
     public function tambah()

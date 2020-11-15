@@ -12,9 +12,14 @@ use File;
 
 class PegawaiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data_pegawai = Pegawai::all()->sortBy('kode_pegawai');
+        if($request->has('cari')){
+            $data_pegawai = Pegawai::where('nama','like',"%".$request->cari."%")->get();
+        }else{
+            $data_pegawai = Pegawai::orderBy('kode_pegawai','ASC')->paginate(10);
+        }
+        
         return view('pegawai.index',compact('data_pegawai'));
     }
 
@@ -41,23 +46,28 @@ class PegawaiController extends Controller
     }
     public function prosesTambah(ErrorRequest $request)
     {
+       
+        //input user
+        $user = new User;
+        $user->name = $request->nama;
+        $user->email = $request->email;
+        $user->username = $request->username;
+        $user->password = bcrypt($request->password);
+        $user->remember_token = str_random(50);
+        $user->level = $request->level;
+        $user->save();
+        //input pegawai
+        $request->request->add(['user_id' => $user->id]);
+        $pegawai = Pegawai::create($request->all());
+        
         if($request->hasFile('foto'))
         {
-            //input user
-            $user = new User;
-            $user->name = $request->nama;
-            $user->email = $request->email;
-            $user->username = $request->username;
-            $user->password = bcrypt($request->password);
-            $user->remember_token = str_random(50);
-            $user->level = $request->level;
-            $user->save();
-            //input pegawai
-            $request->request->add(['user_id' => $user->id]);
-            $pegawai = Pegawai::create($request->all());
             $tempat_file = public_path('/images');
             $request->file('foto')->move($tempat_file,$request->file('foto')->getClientOriginalName());
             $pegawai->foto = $request->file('foto')->getClientOriginalName();
+            $pegawai->save();
+        }else{
+            $pegawai->foto = NULL;
             $pegawai->save();
         }
         

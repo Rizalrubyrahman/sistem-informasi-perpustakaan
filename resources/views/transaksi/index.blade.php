@@ -10,7 +10,13 @@
 
 <div class="card">
 <div class="table-responsive shadow mt-4">
-    <table class="table align-items-center table-flush" id="datatable">
+   <div class="d-flex justify-content-end">
+      <form action="/transaksi" method="GET">
+        <input type="text" name="cari" id="cari"  style="margin-left: -260px; height:30px; width:250px;" placeholder="Masukan kode transaksi">
+        <button type="submit" class="btn btn-primary btn-sm mt--2" style="height:35px; border-radius:0px;">Cari</button>
+      </form>
+    </div>   
+    <table class="table align-items-center table-flush mt-4" id="datatable">
       <thead class="thead-light">
         <tr>
           <th scope="col">Kode Transaksi</th>
@@ -39,11 +45,15 @@
                 $durasi = ($datetime - $datenow) / 86400;
             @endphp
             <td class="text-center">
-              @if ($durasi < 0)
+              @if ($transaksi->status == "Pinjam")
+                @if ($durasi < 0)
                   @php
-                      $denda = abs($durasi) * 1000;
+                    $denda = abs($durasi) * 1000;
                   @endphp
-                  Rp.{{ $denda }}
+                  Rp.{{ number_format($denda, '0', ',', '.') }}
+                @else
+                  Rp.0
+                @endif
               @else
                 Rp.0
               @endif

@@ -13,7 +13,7 @@ class BukuController extends Controller
         if($request->has('cari')){
             $data_buku = Buku::where('judul','like',"%".$request->cari."%")->get();
         }else{
-            $data_buku = Buku::all()->sortBy('kode_buku');
+            $data_buku = Buku::orderBy('kode_buku', 'ASC')->paginate(10);
         }
         return view('buku.index',compact('data_buku'));
     }

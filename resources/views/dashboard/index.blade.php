@@ -96,29 +96,86 @@
     </div>
     
   <div class="container">
-    <div class="card"style="width: 97%; margin:auto;">
-      <div class="card-header">
-        <h3>Grafik Peminjaman Buku Per Bulan</h3>
-      </div>
-      <div class="card-body" >
-        <div class="row">
-          <div class="col-md-12">
-            <div id="map"></div>
-          </div>
+    <div class="card">
+      <div class="table-responsive shadow mt-4">
+         <div class="d-flex justify-content-end">
+            <form action="/transaksi" method="GET">
+              <input type="text" name="cari" id="cari"  style="margin-left: -260px; height:30px; width:250px;" placeholder="Masukan kode transaksi">
+              <button type="submit" class="btn btn-primary btn-sm mt--2" style="height:35px; border-radius:0px;">Cari</button>
+            </form>
+          </div>   
+          <table class="table align-items-center table-flush mt-4" id="datatable">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Kode Transaksi</th>
+                <th scope="col">Nama Anggota</th>
+                <th scope="col">Judul Buku</th>
+                <th scope="col">Tanggal Pinjam</th>
+                <th scope="col">Tanggal Kembali</th>
+                <th class="text-center">Denda</th>
+                <th scope="col">Status</th>
+                @if (auth()->user()->level == "Admin")
+                  <th scope="col">Aksi</th>    
+                @endif
+              </tr>
+            </thead>
+            @foreach($data_transaksi as $transaksi)
+            <tbody class="list">
+              <tr>
+                  <td>{{$transaksi->kode_transaksi}}</td>
+                  <td>{{$transaksi->anggota->nama}}</td>
+                  <td>{{$transaksi->buku->judul}}</td>
+                  <td>{{date('d-m-Y',strtotime($transaksi->tanggal_pinjam))}}</td>
+                  <td>{{date('d-m-Y',strtotime($transaksi->tanggal_kembali))}}</td>
+                  @php
+                      $datetime = strtotime($transaksi->tanggal_kembali);
+                      $datenow = strtotime(date("Y-m-d"));
+                      $durasi = ($datetime - $datenow) / 86400;
+                  @endphp
+                  <td class="text-center">
+                    @if ($transaksi->status == "Pinjam")
+                      @if ($durasi < 0)
+                        @php
+                          $denda = abs($durasi) * 1000;
+                        @endphp
+                        Rp.{{ number_format($denda, '0', ',', '.') }}
+                      @else
+                        Rp.0
+                      @endif
+                    @else
+                      Rp.0
+                    @endif
+                  </td>
+                  <td>
+                    <span class="badge" style="background-color: #ffc107; color: #212529;">{{$transaksi->status}}</span>
+                  </td>
+                  @if (auth()->user()->level == "Admin")
+                    <td>
+                      @if($transaksi->status == "Kembali")
+                        <a href="#" class="btn btn-sm btn-danger delete" transaksi-id="{{ $transaksi->id }}" style="border:none;">Hapus</a>
+                      @else
+                        <div class="btn-group dropdown">
+                          <button type="button" class="btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Aksi
+                          </button>
+                          <div class="dropdown-menu">
+                              <form action="/transaksi/{{$transaksi->id}}/ubah" method="post">
+                                  {{ csrf_field() }}
+                                  <input type="hidden" name="_method" value="put">
+                                  <button type="submit" class="dropdown-item" style="border:none;">Sudah Kembali</button>
+                              </form>
+                                <a href="#" class="dropdown-item delete" transaksi-id="{{ $transaksi->id }}" style="border:none;">Hapus</a>
+                          </div>
+                        </div>
+                      @endif
+                    </td>  
+                  @endif
+              </tr>
+            </tbody>
+            @endforeach
+          </table>
         </div>
       </div>
-    </div>
   </div>
 @endsection
-@section('javascript')
-    <script>
-      var map = L.map('map', {
-            center: [-6.991576, 109.122923],
-            zoom: 13
-        });
 
-        L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=Ts9g8McLuNVEfjGFTHeG', {
-            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>'
-        }).addTo(map);
-    </script>
-@endsection
