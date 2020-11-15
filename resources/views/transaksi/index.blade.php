@@ -16,7 +16,7 @@
         <button type="submit" class="btn btn-primary btn-sm mt--2" style="height:35px; border-radius:0px;">Cari</button>
       </form>
     </div>   
-    <table class="table align-items-center table-flush mt-4" id="datatable">
+    <table class="table align-items-center table-flush mt-4">
       <thead class="thead-light">
         <tr>
           <th scope="col">Kode Transaksi</th>
