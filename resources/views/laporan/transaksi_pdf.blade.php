@@ -127,8 +127,8 @@
                     <td style="text-align: center">{{ $data->kode_transaksi }}</td>
                     <td>{{ $data->anggota->nama }}</td>
                     <td>{{ $data->buku->judul }}</td>
-                    <td style="text-align: center">{{ date('d-m-Y',strtotime('$data->tanggal_pinjam')) }}</td>
-                    <td style="text-align: center">{{ date('d-m-Y',strtotime('$data->tanggal_kembali')) }}</td>
+                    <td style="text-align: center">{{ \Carbon\Carbon::parse($data->tanggal_pinjam)->format('d-m-Y') }}</td>
+                    <td style="text-align: center">{{ \Carbon\Carbon::parse($data->tanggal_kembali)->format('d-m-Y') }}</td>
                     @if ($data->status == 'Pinjam')
                         <td><span class="badge-warning">Pinjam</span></td>
                     @else
